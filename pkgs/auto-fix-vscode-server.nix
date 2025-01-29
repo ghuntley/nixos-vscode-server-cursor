@@ -21,7 +21,7 @@
   enableFHS ? false,
   nodejsPackage ? null,
   extraRuntimeDependencies ? [ ],
-  installPath ? "$HOME/.vscode-server",
+  installPath ? "$HOME/.cursor-server",
   postPatch ? "",
 }: let
   inherit (lib) makeBinPath makeLibraryPath optionalString;
@@ -134,7 +134,7 @@
           return 0
         fi
 
-        # Backwards compatibility with previous versions of nixos-vscode-server.
+        # Backwards compatibility with previous versions of nixos-vscode-server-cursor.
         local old_patched_file
         old_patched_file="$(basename "$actual_dir")"
         if [[ $old_patched_file == "server" ]]; then
@@ -144,7 +144,7 @@
           old_patched_file="${installPath}/.''${old_patched_file%%-*}.patched"
         fi
         if [[ -e $old_patched_file ]]; then
-          echo "Migrating old nixos-vscode-server patch marker file to new location in $actual_dir." >&2
+          echo "Migrating old nixos-vscode-server-cursor patch marker file to new location in $actual_dir." >&2
           cp "$old_patched_file" "$patched_file"
           return 0
         fi
